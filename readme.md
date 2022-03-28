@@ -1,33 +1,3 @@
-Skip to content
-Product 
-Team
-Enterprise
-Explore 
-Marketplace
-Pricing 
-Search
-Sign in
-Sign up
-varun-saini-18
-/
-Pratilipi
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Pratilipi/README.md
-@varun-saini-18
-varun-saini-18 Update README.md
-Latest commit d266a34 on 10 Jan
- History
- 1 contributor
-119 lines (80 sloc)  2.76 KB
-   
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -35,10 +5,10 @@ Latest commit d266a34 on 10 Jan
 <br />
 <p align="center">
   <a href="https://1drv.ms/u/s!Ar_vfbHCB9exc2gL-vC3tKlqaXo?e=QzYVfC">
-    <img src="https://www.mpug.com/wp-content/uploads/2020/03/new-project-logo.png" alt="Logo" width="80" height="80">
+    <img src="https://i.pinimg.com/originals/1f/3f/4c/1f3f4ce973d946578567f190e2773709.png" alt="Logo" width="180" height="150">
   </a>
 
-  <h3 align="center">Pratilipi</h3>
+  <h3 align="center">Todo App</h3>
 
   
   </p>
@@ -70,22 +40,22 @@ Latest commit d266a34 on 10 Jan
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-* Project aims at user interaction with books.
-* User can add, read or delete a story
+* Project aims at user interaction with Todo List Via Board.
+* User can add, read , update or delete a Board or a Task under a Board.
 
 
 
 Functionalities:
 * User needs to authorize first.
-* After authorization user can add, read or delete the story
-* If user is not authorised or parameters passed are not appropriate then error will shown
+* After authorization user can add, read, update or delete the task or a board
+* If user is not authorised or parameters passed are not appropriate then error will be shown
 
 ### Built With
- [NodeJs]    
- [Javascript]  
- [BrainStorming]
-
-
+[NodeJs]    
+[Javascript]  
+[MongoDB]
+[JWT]
+[BCRYPTJS]
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -97,56 +67,52 @@ Follow the procedure below
 
 1. Install nodeJs
 2. Clone the repo
-3. run command: cd pratilipi
-4. run command: cd src
-5. run command: npm i
-6. run command: node index.js
-7. Voilla!
+3. run command: cd TodoApp
+4. run command: npm start
+5. Voilla! application is UP
 
 
 ### Installation
 
 Clone the repo
    ```sh
-   git clone https://github.com/varun-saini-18/Pratilipi.git
+   gh repo clone asheeshsingh1/TodoApp
    ```
 
 
 
 ## Postman Collection
 
-Link : https://www.getpostman.com/collections/08df2b5ef6e90915c3e7
+Link : https://www.getpostman.com/collections/1f521a97d476a357f9b3
 
 ## Schema
 Please visit : 
-https://dbdiagram.io/d/61d94dabf8370f0a2ee5a5eb
+https://dbdiagram.io/d/624200f0bed61838731308d7
 
 
 ## Meta Info
-* Currently the apps supports simple interaction of user with books
-* Later every time when a user opens a book we can update entry in user_book_interaction
-* So from user_book_interaction table, we will be able to fetch:
+* Currently the apps supports simple interaction of user with boards and task on boards
+* Later every time when a user creates a board we create Document in the MongoDB collection and same is being done for a task.
+* So from tasks collection, we will be able to fetch:
 
 <ol>
-    <li>All the books read by the reader</li>
-    <li>All the books liked by the reader</li>
-    <li>All the readers that read the particular book</li>
-    <li>All the readers that liked a particular book</li>
+    <li>All the tasks created by the user</li>
+    <li>Particular created by the user</li>
 </ol>
 
-* Instead of storing plain password in database, we can store encrypted password using bcryptjs library of JS. While authenticating the user we can simple match the hashed password with the password stored in DB.
+* Instead of storing plain password in database, we can store hashed password using bcryptjs library of JS. While authenticating the user we can simple match the hashed password with the password stored in DB.
 * We can also add a default page for requests that does not map for any url.
 
 <!-- CONTACT -->
 ## Contact
 
-Varun Saini - [Linked in](https://www.linkedin.com/in/varun-sainii/)
+Asheesh Singh - [Linked in](https://github.com/asheeshsingh1/)
 
 
 
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/varun-sainii
+[linkedin-url]: https://github.com/asheeshsingh1/
 © 2022 GitHub, Inc.
 Terms
 Privacy
