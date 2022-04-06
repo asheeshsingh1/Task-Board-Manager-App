@@ -54,7 +54,10 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true,
         }
-    }]
+    }],
+    dp:{
+        type: Buffer
+    }
 })
 
 userSchema.virtual('tasks',{
@@ -75,6 +78,7 @@ userSchema.methods.toJSON = function(){
 
     delete userDataObject.password
     delete userDataObject.tokens
+    delete userDataObject.dp
 
     return userDataObject;
 }
@@ -82,7 +86,7 @@ userSchema.methods.toJSON = function(){
 //Generating JWT and saving it in DB
 userSchema.methods.generateJWT = async function(){
     const user = this
-    const token = jwt.sign({_id: user.id.toString()}, 'jwtHashText')
+    const token = jwt.sign({_id: user.id.toString()}, process.env.JWT_TOKEN_HASH)
     user.tokens = user.tokens.concat({token})
     await user.save()
     return token;
@@ -95,6 +99,7 @@ userSchema.statics.findByCredentials = async (email,password) =>{
         throw new Error('Invalid Credentials');
     }
     const correctUserCreds = await bcrypt.compare(password,user.password)
+    // console.log(correctUserCreds)
     if(!correctUserCreds){
         throw new Error('Invalid Credentials');
     }

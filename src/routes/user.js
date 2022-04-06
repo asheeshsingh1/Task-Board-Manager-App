@@ -2,6 +2,19 @@ const express = require('express')
 const router = new express.Router()
 const User = require('../models/users')
 const auth = require('../middleware/auth')
+const multer = require('multer')
+
+const upload = multer({
+  limits:{
+    fileSize : 2000000
+  },
+  fileFilter(req,file,cb){
+    if(!file.originalname.match(/\.(jpg|jpeg|png)$/)){
+      return cb(new Error('Please upload a file with .JPG, .JPEG or .PNG extension!!!'))
+    }
+    cb(undefined,true);
+  }
+})
 
 router.post('/users',async (req, res)=>{
     const user = new User(req.body)
@@ -88,6 +101,45 @@ router.delete('/users/myprofile',auth, async (req,res)=>{
         status:e.name,
         statusMessage:e.message
       })
+  }
+})
+
+//DP Routes
+router.post('/users/myprofile/dp',auth,upload.single('dp'), async (req,res)=>{
+  req.user.dp = req.file.buffer
+  await req.user.save()
+  res.send({
+    status:"Successfuly uploaded profile pic."
+  })
+}, (error,_req,res)=>{
+  res.status(400).send({
+    status: "File type Validation Failed",
+    statusMessage: error.message
+  })
+})
+
+router.delete('/users/myprofile/dp',auth, async (req,res)=>{
+  req.user.dp = undefined
+  await req.user.save()
+  res.send({
+    status:"Successfuly deleted profile pic."
+  })
+})
+
+router.get('/users/:id/dp', async (req,res)=>{
+  try{
+    const user = await User.findById(req.params.id);
+    // console.log(user)
+    if(!user || !user.dp){
+      throw new Error('No DP associated with the User.')
+    }
+    res.set('Content-Type','image/jgp')
+    res.send(user.dp)
+  }catch(e){
+    res.status(404).send({
+      status:e.name,
+      statusMessage:e.message
+    })
   }
 })
 

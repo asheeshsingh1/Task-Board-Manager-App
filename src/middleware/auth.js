@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken')
 const auth = async (req, res, next) => {
     try {
         const token = req.header('x-api-key')
-        const decoded = jwt.verify(token, 'jwtHashText')
+        const decoded = jwt.verify(token, process.env.JWT_TOKEN_HASH)
+        // console.log(decoded)
         const user = await User.findOne({ _id: decoded._id, 'tokens.token': token })
         if (!user) {
             throw new Error()

@@ -2,6 +2,7 @@ const express = require('express')
 const router = new express.Router()
 const auth = require('../middleware/auth')
 const Task = require('../models/tasks')
+const validBoard = require('../../customValidator')
 
 router.post('/tasks',auth,async (req, res) => {
     const task = new Task({
@@ -9,6 +10,11 @@ router.post('/tasks',auth,async (req, res) => {
       owner: req.user._id
     })
     try{
+      const isValidBoard = await validBoard(task.refBoard,task.owner);
+      // console.log(isValidBoard)
+      if(!isValidBoard){
+        throw new Error('Bad Request')
+      }
       await task.save()
       res.status(201).send(task)
     }catch(e){

@@ -1,13 +1,10 @@
 const mongoose = require('mongoose')
 const Board = require('./src/models/boards')
 
-const validateBoardId = async (value) =>{
+const validateBoardId = async (boardId,ownerId) =>{
     try{
-    const board = await Board.findById(value);
-        if(!board){
-            return false;
-        }
-        return true;
+    const board = await Board.findOne({_id:boardId,owner:ownerId});
+        return !(!board);
     }catch(e){
         console.log(e)
         return false;
