@@ -1,14 +1,7 @@
 const e = require('express');
 const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose')
-// const validator = require('validator')
-const validBoard = require('../../customValidator')
 
-// const completedState = {
-//     TYPE1: 'Todo',
-//     TYPE2: 'Doing',
-//     TYPE3: 'Done'
-// }
 const completedState = Object.freeze({
   Init: 'Todo',
   Mid: 'Doing',
@@ -37,20 +30,6 @@ const Task =  mongoose.model('Task',{
         required: true,
         ref: 'Board'
     }
-    // boardid:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     validate(value){
-    //         validBoard(value,ownerGlobal).then((flagBoard)=>{
-    //             console.log(flagBoard);
-    //             if(!flagBoard){
-    //                 throw new Error('Not a valid Board id');
-    //             }
-    //         }).catch((error)=>{
-    //             console.log(error);
-    //         })
-    //     }
-    // }
 })
 
 module.exports = Task;
