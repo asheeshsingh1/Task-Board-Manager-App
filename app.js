@@ -15,7 +15,10 @@ app.use(taskRoutes)
 app.use(boardRoutes)
 
 app.get("/", (req, res) => {
-  res.json({name : "Asheesh Singh has developed this Todo List App"})
+  res.json(
+    {
+      name : "Asheesh Singh has developed this Todo List App","gitHubLink":"https://github.com/asheeshsingh1","readmeLink":"https://github.com/asheeshsingh1/TodoApp#readme"
+    })
 });
 
 module.exports = app;
