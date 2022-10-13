@@ -3,7 +3,7 @@ const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose')
 
 const completedState = Object.freeze({
-  Init: 'Todos',
+  Init: 'Todo',
   Mid: 'Doing',
   Final: 'Done',
 });
